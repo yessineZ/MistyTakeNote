@@ -1,0 +1,39 @@
+--------------------------------------commands  
+
+npm install --save nodemon dotenv express mongoose
+
+
+----------------------------------snippets for the commands in package.json file 
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon server.js" 
+  },
+//if you use the commande you need to type npm run x  
+
+
+
+-------------------------------------bycryptjs
+npm install --save bcryptjs
+const login = async (req,res) => {
+    const user = await User.findOne({email : req.body.email}) ; 
+    if(!user) {
+        return res.status(400).json({
+            error : "User not found" 
+        });
+    }
+    const isMatch = bcrypt.compareSync(req.body.password,user.password) ;
+    if(!isMatch) { 
+        return res.status(400).json({
+            error : "Password is incorrect"
+        });
+    }
+    
+    res.status(200).json({user : user}) ;
+}
+
+
+-----------------------------------jsonwebtoken 
+npm install jsonwebtoken 
+
+npm install --save cookie-parser
+
